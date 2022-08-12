@@ -1,14 +1,12 @@
-import { component$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { component$, useMount$, useStore } from '@builder.io/qwik';
+import { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
-	return (
-		<div>
-			<h1>Welcome to Qwik City</h1>
-
-			<p>The meta-framework for Qwik.</p>
-		</div>
-	);
+	const state = useStore({ name: 'gioboa' });
+	useMount$(() => {
+		state.name = 'misko';
+	});
+	return <div>{state.name}</div>;
 });
 
 export const head: DocumentHead = {
